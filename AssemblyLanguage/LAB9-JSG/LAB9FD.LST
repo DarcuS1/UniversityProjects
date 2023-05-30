@@ -1,0 +1,67 @@
+Turbo Assembler	 Version 3.0	    04/10/22 23:32:32	    Page 1
+lab9fd.asm
+
+
+
+      1				     EXTRN SUM : FAR
+      2
+      3	0000			     DATA SEGMENT PARA PUBLIC 'DATA'
+      4
+      5	0000  35 36 37		     SIR DB "567";INITIALIZE A STRING WITH LENGTH AND ADDRES,AND A
+      6	0003  0003		     LEN DW $-SIR ;SUM AS RESULT
+      7	0005  00000000sr	     ADD1 DD SIR
+      8
+      9
+     10	0009			     DATA ENDS
+     11
+     12
+     13
+     14	0000			     CODE SEGMENT PARA PUBLIC 'CODE'
+     15				     ASSUME CS:CODE,DS:DATA
+     16
+     17	0000			     START PROC	FAR
+     18
+     19	0000  1E		     PUSH DS
+     20	0001  33 C0		     XOR AX, AX
+     21	0003  50		     PUSH AX
+     22	0004  B8 0000s		     MOV AX, DATA
+     23	0007  8E D8		     MOV DS, AX
+     24
+     25	0009  C5 1E 0005r	     LDS BX, ADD1;GIVE THE REGISTERS THE DATA BEFORE CALL
+     26	000D  8B 0E 0003r	     MOV CX, LEN
+     27	0011  8C DA		     MOV DX, DS
+     28
+     29	0013  9A 00000000se	     CALL SUM
+     30
+     31	0018  CB		     RET
+     32
+     33	0019			     START ENDP
+     34	0019			     CODE ENDS
+     35				     END START
+Turbo Assembler	 Version 3.0	    04/10/22 23:32:32	    Page 2
+Symbol Table
+
+
+
+
+Symbol Name			  Type	 Value
+
+??DATE				  Text	 "04/10/22"
+??FILENAME			  Text	 "lab9fd  "
+??TIME				  Text	 "23:32:32"
+??VERSION			  Number 0300
+@CPU				  Text	 0101H
+@CURSEG				  Text	 CODE
+@FILENAME			  Text	 LAB9FD
+@WORDSIZE			  Text	 2
+ADD1				  Dword	 DATA:0005
+LEN				  Word	 DATA:0003
+SIR				  Byte	 DATA:0000
+START				  Far	 CODE:0000
+SUM				  Far	 ----:---- Extern
+
+Groups & Segments		  Bit Size Align  Combine Class
+
+CODE				  16  0019 Para	  Public  CODE
+DATA				  16  0009 Para	  Public  DATA
+

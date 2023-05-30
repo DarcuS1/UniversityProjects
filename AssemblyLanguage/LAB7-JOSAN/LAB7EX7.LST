@@ -1,0 +1,63 @@
+Turbo Assembler	 Version 3.0	    03/30/22 16:49:14	    Page 1
+lab7ex7.asm
+
+
+
+      1	0000			     DATA SEGMENT PARA PUBLIC 'DATA'
+      2	0000  0A*(??)		     NUMBERS DB	10 DUP(?)
+      3	000A			     DATA ENDS
+      4	0000			     CODE SEGMENT PARA PUBLIC 'CODE'
+      5
+      6	0000			     CONVERT PROC NEAR
+      7	0000  B3 0A		     MOV BL, 10
+      8	0002  F6 F3		     DIV BL
+      9	0004  86 E0		     XCHG AH, AL
+     10	0006  80 C4 30		     ADD AH, '0';make them start right in ascii
+     11	0009  04 30		     ADD AL, '0'
+     12
+     13	000B  C3		     RET
+     14	000C			     CONVERT ENDP
+     15
+     16	000C			     START PROC	FAR
+     17				     ASSUME CS:CODE, DS:DATA
+     18
+     19	000C  1E		     PUSH DS ;prepare to return	to DOS
+     20	000D  33 C0		     XOR AX,AX
+     21	000F  50		     PUSH AX
+     22	0010  B8 0000s		     MOV AX,DATA; initialise DS
+     23	0013  8E D8		     MOV DS, AX
+     24
+     25	0015  32 E4		     XOR AH, AH
+     26	0017  B0 0F		     MOV AL, 0FH;take one
+     27	0019  E8 FFE4		     CALL CONVERT
+     28	001C  CB		     RET
+     29	001D			     START ENDP
+     30
+     31	001D			     CODE ENDS
+     32
+     33				     END START
+Turbo Assembler	 Version 3.0	    03/30/22 16:49:14	    Page 2
+Symbol Table
+
+
+
+
+Symbol Name			  Type	 Value
+
+??DATE				  Text	 "03/30/22"
+??FILENAME			  Text	 "lab7ex7 "
+??TIME				  Text	 "16:49:14"
+??VERSION			  Number 0300
+@CPU				  Text	 0101H
+@CURSEG				  Text	 CODE
+@FILENAME			  Text	 LAB7EX7
+@WORDSIZE			  Text	 2
+CONVERT				  Near	 CODE:0000
+NUMBERS				  Byte	 DATA:0000
+START				  Far	 CODE:000C
+
+Groups & Segments		  Bit Size Align  Combine Class
+
+CODE				  16  001D Para	  Public  CODE
+DATA				  16  000A Para	  Public  DATA
+

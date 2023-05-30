@@ -1,0 +1,16 @@
+﻿  EGC_Lab5.cpp
+C:\Users\gokuz\source\repos\EGC_Lab5\EGC_Lab5\EGC_Lab5.cpp(179,25): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\gokuz\source\repos\EGC_Lab5\EGC_Lab5\EGC_Lab5.cpp(183,31): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\gokuz\source\repos\EGC_Lab5\EGC_Lab5\EGC_Lab5.cpp(196,67): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\gokuz\source\repos\EGC_Lab5\EGC_Lab5\EGC_Lab5.cpp(196,59): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\gokuz\source\repos\EGC_Lab5\EGC_Lab5\EGC_Lab5.cpp(196,51): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\gokuz\source\repos\EGC_Lab5\EGC_Lab5\EGC_Lab5.cpp(196,43): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\gokuz\source\repos\EGC_Lab5\EGC_Lab5\EGC_Lab5.cpp(197,67): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\gokuz\source\repos\EGC_Lab5\EGC_Lab5\EGC_Lab5.cpp(197,59): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\gokuz\source\repos\EGC_Lab5\EGC_Lab5\EGC_Lab5.cpp(197,51): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\gokuz\source\repos\EGC_Lab5\EGC_Lab5\EGC_Lab5.cpp(197,43): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\gokuz\source\repos\EGC_Lab5\EGC_Lab5\EGC_Lab5.cpp(198,67): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\gokuz\source\repos\EGC_Lab5\EGC_Lab5\EGC_Lab5.cpp(198,59): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\gokuz\source\repos\EGC_Lab5\EGC_Lab5\EGC_Lab5.cpp(198,51): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\gokuz\source\repos\EGC_Lab5\EGC_Lab5\EGC_Lab5.cpp(198,43): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  EGC_Lab5.vcxproj -> C:\Users\gokuz\source\repos\EGC_Lab5\Debug\EGC_Lab5.exe

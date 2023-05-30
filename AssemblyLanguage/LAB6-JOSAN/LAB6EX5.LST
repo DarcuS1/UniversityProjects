@@ -1,0 +1,64 @@
+Turbo Assembler	 Version 3.0	    03/23/22 16:49:07	    Page 1
+lab6ex5.asm
+
+
+
+      1	0000			     DATA SEGMENT PARA PUBLIC 'DATA'
+      2
+      3	0000  05*(??)		     STR1 DB 5 DUP(?)
+      4				     ;string liber cu 5	locuri
+      5	0005			     DATA ENDS
+      6
+      7	0000			     CODE SEGMENT PARA PUBLIC 'CODE'
+      8				     ASSUME CS:CODE,DS:DATA
+      9
+     10
+     11	0000			     START PROC	FAR
+     12	0000  1E		     PUSH DS
+     13	0001  B8 0000s		     MOV AX,DATA
+     14	0004  8E D8		     MOV DS,AX
+     15
+     16	0006  B9 0005		     MOV CX,5 ;pregatirea loopului
+     17	0009  BE 0000		     MOV SI,0  ;initializare
+     18	000C  33 C0		     XOR AX,AX ;CURATAM	AX
+     19	000E  BB 0041		     MOV BX,65
+     20	0011  8B C3		     MOV AX,BX	    ;PUNEM O VALOARE RANDOM PE AX
+     21
+     22	0013			     next :
+     23	0013  88 84 0000r	     MOV STR1[SI],AL   ;MUTAM IN STRING
+     24	0017  46		     INC SI	     ;INCREMENT	LA SI SI AL PT URMATOAREA VLOARE
+     25	0018  FE C0		     INC AL
+     26
+     27	001A  E2 F7		     loop next
+     28
+     29	001C  1F		     POP DS
+     30	001D  CB		     RET
+     31
+     32	001E			     START ENDP
+     33	001E			     CODE ENDS
+     34				     END START
+Turbo Assembler	 Version 3.0	    03/23/22 16:49:07	    Page 2
+Symbol Table
+
+
+
+
+Symbol Name			  Type	 Value
+
+??DATE				  Text	 "03/23/22"
+??FILENAME			  Text	 "lab6ex5 "
+??TIME				  Text	 "16:49:07"
+??VERSION			  Number 0300
+@CPU				  Text	 0101H
+@CURSEG				  Text	 CODE
+@FILENAME			  Text	 LAB6EX5
+@WORDSIZE			  Text	 2
+NEXT				  Near	 CODE:0013
+START				  Far	 CODE:0000
+STR1				  Byte	 DATA:0000
+
+Groups & Segments		  Bit Size Align  Combine Class
+
+CODE				  16  001E Para	  Public  CODE
+DATA				  16  0005 Para	  Public  DATA
+

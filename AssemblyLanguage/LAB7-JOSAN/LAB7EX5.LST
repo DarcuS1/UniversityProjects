@@ -1,0 +1,75 @@
+Turbo Assembler	 Version 3.0	    03/30/22 16:49:08	    Page 1
+lab7ex5.asm
+
+
+
+      1	0000			     DATA SEGMENT PARA PUBLIC 'DATA'
+      2	0000  0A*(??)		     NUMBERS DB	10 DUP(?)
+      3	000A			     DATA ENDS
+      4
+      5	0000			     CODE SEGMENT PARA PUBLIC 'CODE'
+      6
+      7	0000			     START PROC	FAR
+      8
+      9				     ASSUME CS:CODE, DS:DATA
+     10	0000  1E		     PUSH DS ;prepare to return	to DOS
+     11	0001  33 C0		     XOR AX,AX
+     12	0003  50		     PUSH AX
+     13	0004  B8 0000s		     MOV AX,DATA; initialise DS
+     14	0007  8E D8		     MOV DS, AX
+     15
+     16	0009  B8 0145		     MOV AX, 325;random	nr then	div by cx
+     17	000C  B9 000A		     MOV CX, 10
+     18	000F  BE 0000		     MOV SI,0
+     19
+     20	0012			     L:
+     21	0012  99		     CWD
+     22	0013  F7 F1		     DIV CX
+     23	0015  88 94 0000r	     MOV NUMBERS[SI], DL ;put the rest of the div in numbers
+     24	0019  80 84 0000r 30	     ADD NUMBERS[SI], '0';add the value	of 0 in	ascii
+     25	001E  46		     INC SI
+     26	001F  3D 0000		     CMP AX, 0
+     27	0022  75 EE		     JNE L
+     28
+     29	0024  8B CE		     MOV CX, SI
+     30	0026  B4 02		     MOV AH, 02H;prepare
+     31	0028  4E		     DEC SI
+     32
+     33	0029			     L2:
+     34	0029  8A 94 0000r	     MOV DL, NUMBERS[SI]  ;   output in	reverse	order beacuse si has last value
+     35	002D  CD 21		     INT 21H;output
+     36	002F  4E		     DEC SI
+     37	0030  E2 F7		     LOOP L2
+     38
+     39
+     40	0032  CB		     RET
+     41
+     42	0033			     START ENDP
+     43	0033			     CODE ENDS
+     44				     END START
+Turbo Assembler	 Version 3.0	    03/30/22 16:49:08	    Page 2
+Symbol Table
+
+
+
+
+Symbol Name			  Type	 Value
+
+??DATE				  Text	 "03/30/22"
+??FILENAME			  Text	 "lab7ex5 "
+??TIME				  Text	 "16:49:08"
+??VERSION			  Number 0300
+@CPU				  Text	 0101H
+@CURSEG				  Text	 CODE
+@FILENAME			  Text	 LAB7EX5
+@WORDSIZE			  Text	 2
+L				  Near	 CODE:0012
+L2				  Near	 CODE:0029
+NUMBERS				  Byte	 DATA:0000
+START				  Far	 CODE:0000
+
+Groups & Segments		  Bit Size Align  Combine Class
+
+CODE				  16  0033 Para	  Public  CODE
+DATA				  16  000A Para	  Public  DATA
+

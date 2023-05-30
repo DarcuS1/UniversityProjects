@@ -1,0 +1,76 @@
+Turbo Assembler	 Version 3.0	    03/30/22 16:49:12	    Page 1
+lab7ex6.asm
+
+
+
+      1	0000			     DATA SEGMENT PARA PUBLIC 'DATA'
+      2	0000  0A*(??)		     NUMBERS DB	10 DUP(?)
+      3	000A			     DATA ENDS
+      4
+      5	0000			     CODE SEGMENT PARA PUBLIC 'CODE'
+      6
+      7	0000			     START PROC	FAR
+      8
+      9				     ASSUME CS:CODE, DS:DATA
+     10	0000  1E		     PUSH DS ;prepare to return	to DOS
+     11	0001  33 C0		     XOR AX,AX
+     12	0003  50		     PUSH AX
+     13	0004  B8 0000s		     MOV AX,DATA; initialise DS
+     14	0007  8E D8		     MOV DS, AX
+     15
+     16
+     17	0009  B3 0A		     MOV BL, 10
+     18	000B  33 D2		     XOR DX, DX
+     19
+     20	000D			     L:
+     21	000D  B4 01		     MOV AH, 01H
+     22	000F  CD 21		     INT 21H
+     23				     ;intake
+     24	0011  3C 0D		     CMP AL, 0DH
+     25	0013  74 10		     JE	NEXT
+     26				     ;substitutions
+     27	0015  2C 30		     SUB AL, '0'
+     28	0017  8A C8		     MOV CL, AL
+     29
+     30	0019  32 ED		     XOR CH, CH
+     31
+     32	001B  8B C2		     MOV AX, DX
+     33	001D  F6 E3		     MUL BL;making the nr as in	example
+     34	001F  03 C1		     ADD AX, CX
+     35	0021  8B D0		     MOV DX, AX
+     36
+     37	0023  EB E8		     JMP L
+     38
+     39	0025			     NEXT:
+     40
+     41	0025  CB		     RET
+     42
+     43	0026			     START ENDP
+     44	0026			     CODE ENDS
+     45				     END START
+Turbo Assembler	 Version 3.0	    03/30/22 16:49:12	    Page 2
+Symbol Table
+
+
+
+
+Symbol Name			  Type	 Value
+
+??DATE				  Text	 "03/30/22"
+??FILENAME			  Text	 "lab7ex6 "
+??TIME				  Text	 "16:49:12"
+??VERSION			  Number 0300
+@CPU				  Text	 0101H
+@CURSEG				  Text	 CODE
+@FILENAME			  Text	 LAB7EX6
+@WORDSIZE			  Text	 2
+L				  Near	 CODE:000D
+NEXT				  Near	 CODE:0025
+NUMBERS				  Byte	 DATA:0000
+START				  Far	 CODE:0000
+
+Groups & Segments		  Bit Size Align  Combine Class
+
+CODE				  16  0026 Para	  Public  CODE
+DATA				  16  000A Para	  Public  DATA
+

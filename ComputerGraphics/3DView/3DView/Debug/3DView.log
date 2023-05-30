@@ -1,0 +1,57 @@
+﻿  3DView.cpp
+C:\Users\gokuz\OneDrive\Desktop\ECG_LABPROJECTS\3DView\3DView\3DView.cpp(164,59): warning C4244: 'argument': conversion from 'float' to 'Uint8', possible loss of data
+C:\Users\gokuz\OneDrive\Desktop\ECG_LABPROJECTS\3DView\3DView\3DView.cpp(164,48): warning C4244: 'argument': conversion from 'float' to 'Uint8', possible loss of data
+C:\Users\gokuz\OneDrive\Desktop\ECG_LABPROJECTS\3DView\3DView\3DView.cpp(164,37): warning C4244: 'argument': conversion from 'float' to 'Uint8', possible loss of data
+C:\Users\gokuz\OneDrive\Desktop\ECG_LABPROJECTS\3DView\3DView\3DView.cpp(178,145): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\gokuz\OneDrive\Desktop\ECG_LABPROJECTS\3DView\3DView\3DView.cpp(178,123): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\gokuz\OneDrive\Desktop\ECG_LABPROJECTS\3DView\3DView\3DView.cpp(178,101): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\gokuz\OneDrive\Desktop\ECG_LABPROJECTS\3DView\3DView\3DView.cpp(178,76): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  camera.cpp
+  mat3.cpp
+  mat4.cpp
+  projection.cpp
+C:\Users\gokuz\OneDrive\Desktop\ECG_LABPROJECTS\3DView\3DView\projection.cpp(22,28): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\gokuz\OneDrive\Desktop\ECG_LABPROJECTS\3DView\3DView\projection.cpp(23,29): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\gokuz\OneDrive\Desktop\ECG_LABPROJECTS\3DView\3DView\projection.cpp(29,26): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\gokuz\OneDrive\Desktop\ECG_LABPROJECTS\3DView\3DView\projection.cpp(30,26): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  transform.cpp
+C:\Users\gokuz\OneDrive\Desktop\ECG_LABPROJECTS\3DView\3DView\transform.cpp(35,27): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\gokuz\OneDrive\Desktop\ECG_LABPROJECTS\3DView\3DView\transform.cpp(36,24): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\gokuz\OneDrive\Desktop\ECG_LABPROJECTS\3DView\3DView\transform.cpp(37,27): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\gokuz\OneDrive\Desktop\ECG_LABPROJECTS\3DView\3DView\transform.cpp(38,27): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\gokuz\OneDrive\Desktop\ECG_LABPROJECTS\3DView\3DView\transform.cpp(80,27): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\gokuz\OneDrive\Desktop\ECG_LABPROJECTS\3DView\3DView\transform.cpp(81,24): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\gokuz\OneDrive\Desktop\ECG_LABPROJECTS\3DView\3DView\transform.cpp(82,27): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\gokuz\OneDrive\Desktop\ECG_LABPROJECTS\3DView\3DView\transform.cpp(83,27): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\gokuz\OneDrive\Desktop\ECG_LABPROJECTS\3DView\3DView\transform.cpp(92,27): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\gokuz\OneDrive\Desktop\ECG_LABPROJECTS\3DView\3DView\transform.cpp(93,27): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\gokuz\OneDrive\Desktop\ECG_LABPROJECTS\3DView\3DView\transform.cpp(94,24): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\gokuz\OneDrive\Desktop\ECG_LABPROJECTS\3DView\3DView\transform.cpp(95,27): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\gokuz\OneDrive\Desktop\ECG_LABPROJECTS\3DView\3DView\transform.cpp(104,22): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  vec3.cpp
+  vec4.cpp
+  zbuffer.cpp
+C:\Users\gokuz\OneDrive\Desktop\ECG_LABPROJECTS\3DView\3DView\zbuffer.cpp(37,12): warning C4244: 'initializing': conversion from 'const _Ty' to 'int', possible loss of data
+          with
+          [
+              _Ty=float
+          ]
+C:\Users\gokuz\OneDrive\Desktop\ECG_LABPROJECTS\3DView\3DView\zbuffer.cpp(38,12): warning C4244: 'initializing': conversion from 'const _Ty' to 'int', possible loss of data
+          with
+          [
+              _Ty=float
+          ]
+C:\Users\gokuz\OneDrive\Desktop\ECG_LABPROJECTS\3DView\3DView\zbuffer.cpp(39,12): warning C4244: 'initializing': conversion from 'const _Ty' to 'int', possible loss of data
+          with
+          [
+              _Ty=float
+          ]
+C:\Users\gokuz\OneDrive\Desktop\ECG_LABPROJECTS\3DView\3DView\zbuffer.cpp(40,12): warning C4244: 'initializing': conversion from 'const _Ty' to 'int', possible loss of data
+          with
+          [
+              _Ty=float
+          ]
+C:\Users\gokuz\OneDrive\Desktop\ECG_LABPROJECTS\3DView\3DView\zbuffer.cpp(49,45): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\gokuz\OneDrive\Desktop\ECG_LABPROJECTS\3DView\3DView\zbuffer.cpp(49,42): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Generating Code...
+  3DView.vcxproj -> C:\Users\gokuz\OneDrive\Desktop\ECG_LABPROJECTS\3DView\Debug\3DView.exe

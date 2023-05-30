@@ -1,0 +1,88 @@
+Turbo Assembler	 Version 3.0	    03/16/22 16:55:05	    Page 1
+lab5.asm
+
+
+
+      1
+      2	0000			     DATA SEGMENT PARA PUBLIC 'DATA'
+      3	0000  0F		     NR1 DB 15
+      4				     ;WE GIVE A	RANDOM VALUE TO	NR1
+      5	0001  0A		     NR2 DB 10
+      6				     ;WE GIVE A	RANDOM VALUE TO	NR2
+      7	0002  0000		     REZ DW 0
+      8				     ;THE RESULT IS WORD, INITIALIZED WITH 0
+      9	0004			     DATA ENDS
+     10
+     11	0000			     CODE SEGMENT PARA PUBLIC 'CODE'
+     12				     ASSUME CS:CODE,DS:DATA
+     13
+     14
+     15	0000			     START PROC	FAR
+     16	0000  1E		     PUSH DS
+     17	0001  B8 0000s		     MOV AX,DATA
+     18	0004  8E D8		     MOV DS,AX
+     19
+     20	0006  B8 0005		     MOV AX,5
+     21				     ;RANDOM VALUE TO AX
+     22	0009  8A 1E 0000r	     MOV BL,NR1
+     23				     ;WE MOVE NR1 IN BX	FOR LATER MULTIPLICATION
+     24	000D  8A 16 0001r	     MOV DL, NR2
+     25				     ;SAME WITH	NR2
+     26	0011  B9 0000		     MOV CX,0
+     27				     ;CLEAN CX
+     28
+     29	0014  8B F0		     MOV  SI,AX
+     30				     ;STORE AX FOR LAETR USE
+     31
+     32	0016  F6 E3		     MUL BL ;AL*NR1
+     33				     ;WE COULD HAVE USED IMUL FOR SIGNED
+     34	0018  03 C8		     ADD  CX,AX
+     35				     ;ADD RESULT OF FIRST EQUATION TO CX
+     36
+     37	001A  8B C6		     MOV AX,SI
+     38				     ;REGIVE VALUE TO AX
+     39
+     40	001C  F6 E2		     MUL DL ; AL*NR2
+     41	001E  03 C8		     ADD CX,AX
+     42				     ;ADD RESULT OF SECOND OPERATION TO	CX
+     43
+     44	0020  03 CB		     ADD CX,BX
+     45				     ;ADD FINAL
+     46
+     47
+     48	0022  89 0E 0002r	     MOV REZ,CX
+     49				     ;MOVE SUM RESULT TO REZ
+     50
+     51
+     52
+     53	0026  1F		     POP DS
+     54	0027  CB		     RET
+     55	0028			     START ENDP
+     56	0028			     CODE ENDS
+     57				     END START
+Turbo Assembler	 Version 3.0	    03/16/22 16:55:05	    Page 2
+Symbol Table
+
+
+
+
+Symbol Name			  Type	 Value
+
+??DATE				  Text	 "03/16/22"
+??FILENAME			  Text	 "lab5	  "
+??TIME				  Text	 "16:55:05"
+??VERSION			  Number 0300
+@CPU				  Text	 0101H
+@CURSEG				  Text	 CODE
+@FILENAME			  Text	 LAB5
+@WORDSIZE			  Text	 2
+NR1				  Byte	 DATA:0000
+NR2				  Byte	 DATA:0001
+REZ				  Word	 DATA:0002
+START				  Far	 CODE:0000
+
+Groups & Segments		  Bit Size Align  Combine Class
+
+CODE				  16  0028 Para	  Public  CODE
+DATA				  16  0004 Para	  Public  DATA
+

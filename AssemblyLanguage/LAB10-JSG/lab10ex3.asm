@@ -1,0 +1,116 @@
+DATA SEGMENT PARA PUBLIC 'DATA'
+
+DATA ENDS
+
+
+INTIR MACRO TIME
+ LOCAL P1, P2 ;p1 and p2 are local labels
+ PUSH DX 
+ PUSH CX
+ MOV DX, TIME ; loads a delay in dx
+P1: MOV CX, 0FF00H ;loads cx with 0FF00h
+ 
+P2: DEC CX ;delays by decrementing cx
+ JNZ P2 ;if cx!=0 continue
+ DEC DX ;if cx=0 decrements dx
+ JNZ P1 ;if dx!=0 loads again cx
+ POP CX ;if dx=0 remake cx and dx
+ POP DX 
+ ENDM  
+ 
+
+COD SEGMENT PARA 'CODE'
+MAIN PROC FAR 
+ ASSUME CS:COD, DS:DATA
+
+ PUSH DS ;saves ds
+ XOR AX, AX ;0 in ax
+ PUSH AX ;puts 0 on the stack
+ MOV AX, DATA ;puts seg data in ax
+ MOV DS,AX
+ XOR AX, AX
+ XOR BX, BX
+ XOR CX,CX
+ 
+ MOV AH, 00H ; CLEAR SCREEN
+ MOV AL, 03H
+ INT 10H
+ 
+ INTIR 400 ; DELAY
+ ; THE FIRST SQUARE
+ MOV AH, 06H 
+ MOV AL, 5 ; NR OF LINES
+ MOV BH, 00010000b ; COLOR
+ MOV CH, 0 ; TOP ROW OF WINDOW
+ MOV CL, 0 ; LEFT COLUMN
+ MOV DH, 10 ; BOTTOM ROW
+ MOV DL, 10 ; RIGHT COLUMN
+ INT 10H
+ 
+ INTIR 400 ; DELAY
+ 
+ MOV AH, 06H
+ MOV AL, 5
+ MOV BH, 00110000b
+ MOV CH, 0
+ MOV CL, 65
+ MOV DH, 10
+ MOV DL, 75
+ INT 10H
+ 
+ 
+ INTIR 400 ; DELAY
+ 
+  MOV AH, 06H
+ MOV AL, 5
+ MOV BH, 11110000b
+ MOV CH, 0
+ MOV CL, 54
+ MOV DH, 18
+ MOV DL, 64
+ INT 10H
+
+ INTIR 400 ; DELAY
+ 
+ 
+ MOV AH, 06H
+ MOV AL, 5
+ MOV BH, 11000000b
+ MOV CH, 0
+ MOV CL, 44
+ MOV DH, 6
+ MOV DL, 54
+ INT 10H
+ 
+ 
+ INTIR 400 ; DELAY
+ 
+ 
+ MOV AH, 06H
+ MOV AL, 5
+ MOV BH, 00100000b
+ MOV CH, 0
+ MOV CL, 11
+ MOV DH, 18
+ MOV DL, 21
+ INT 10H
+ 
+  INTIR 400 ; DELAY
+  
+ MOV AH, 06H
+ MOV AL, 5
+ MOV BH, 11100000b
+ MOV CH, 0
+ MOV CL, 23
+ MOV DH, 18
+ MOV DL, 33
+ INT 10H
+ 
+  INTIR 400 ; DELAY 
+
+
+ RET ;gives the control to dos
+MAIN ENDP
+COD ENDS
+END MAIN
+

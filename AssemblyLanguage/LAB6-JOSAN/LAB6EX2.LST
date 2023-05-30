@@ -1,0 +1,91 @@
+Turbo Assembler	 Version 3.0	    03/23/22 16:49:04	    Page 1
+lab6ex2.asm
+
+
+
+      1
+      2	0000			     DATA1 SEGMENT PARA	PUBLIC 'DATA'
+      3	0000  4C 4F 52 45 4D 49	50+  STR1 DB "LOREMIPSUM"
+      4	      53 55 4D
+      5	      =000A		     STR1LEN EQU $-STR1
+      6	000A			     DATA1 ENDS
+      7
+      8
+      9	0000			     DATA2 SEGMENT PARA	PUBLIC 'DATA'
+     10
+     11	0000  ??		     STR2 DB ?
+     12
+     13
+     14	0001			     DATA2 ENDS
+     15
+     16	0000			     CODE SEGMENT PARA PUBLIC 'CODE'
+     17				     ASSUME CS:CODE,DS:DATA1
+     18
+     19
+     20	0000			     START PROC	FAR
+     21	0000  1E		     PUSH DS
+     22	0001  B8 0000s		     MOV AX,DATA1
+     23	0004  8E D8		     MOV DS,AX
+     24
+     25	0006  33 C9		     XOR CX,CX
+     26	0008  B9 000A		     MOV CX,STR1LEN
+     27
+     28	000B  BE 0000		     MOV SI,0
+     29
+     30	000E			     mover:
+     31
+     32	000E  8A 84 0000r	     MOV AL,STR1[SI]
+     33	0012  46		     INC SI
+     34	0013  50		     PUSH AX
+     35	0014  E2 F8		     loop mover
+     36
+     37
+     38				     ASSUME DS:DATA2
+     39	0016  B8 0000s		     MOV AX,DATA2
+     40	0019  8E D8		     MOV DS,AX
+     41
+     42	001B			     taker:
+     43
+     44	001B  58		     POP AX
+     45	001C  88 84 0000r	     MOV STR2[SI],AL
+     46	0020  4E		     DEC SI
+     47
+     48	0021  E2 F8		     loop taker
+     49
+     50
+     51
+     52	0023  1F		     POP DS
+     53	0024  CB		     RET
+     54
+     55	0025			     START ENDP
+     56	0025			     CODE ENDS
+     57				     END START
+Turbo Assembler	 Version 3.0	    03/23/22 16:49:04	    Page 2
+Symbol Table
+
+
+
+
+Symbol Name			  Type	 Value
+
+??DATE				  Text	 "03/23/22"
+??FILENAME			  Text	 "lab6ex2 "
+??TIME				  Text	 "16:49:04"
+??VERSION			  Number 0300
+@CPU				  Text	 0101H
+@CURSEG				  Text	 CODE
+@FILENAME			  Text	 LAB6EX2
+@WORDSIZE			  Text	 2
+MOVER				  Near	 CODE:000E
+START				  Far	 CODE:0000
+STR1				  Byte	 DATA1:0000
+STR1LEN				  Number 000A
+STR2				  Byte	 DATA2:0000
+TAKER				  Near	 CODE:001B
+
+Groups & Segments		  Bit Size Align  Combine Class
+
+CODE				  16  0025 Para	  Public  CODE
+DATA1				  16  000A Para	  Public  DATA
+DATA2				  16  0001 Para	  Public  DATA
+

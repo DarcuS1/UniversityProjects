@@ -1,0 +1,67 @@
+Turbo Assembler	 Version 3.0	    03/16/22 16:55:14	    Page 1
+lab5t2.asm
+
+
+
+      1
+      2	0000			     DATA SEGMENT PARA PUBLIC 'DATA'
+      3
+      4	0000			     DATA ENDS
+      5
+      6	0000			     CODE SEGMENT PARA PUBLIC 'CODE'
+      7				     ASSUME CS:CODE,DS:DATA
+      8
+      9
+     10	0000			     START PROC	FAR
+     11	0000  1E		     PUSH DS
+     12	0001  B8 0000s		     MOV AX,DATA
+     13	0004  8E D8		     MOV DS,AX
+     14
+     15	0006  B8 0005		     MOV AX,5
+     16				     ;RANDOM VALUE TO AX
+     17	0009  B1 07		     MOV CL,7
+     18				     ;GIVE 7 TO	CL FOR LATER MULTIPLICATION
+     19	000B  F6 E1		     MUL CL ;AL*CL
+     20				     ;or use shift
+     21				     ;MOV DX,AX	;STORE INITIAL
+     22				     ;SHL AX,3	;AX*8
+     23				     ;SUB DX,AX	  ;AX*8-INITIAL	AX
+     24				     ;MOV AX,DX	  ;GIVE	AX THE VALUE OF	AX*7
+     25	000D  BB 0005		     MOV BX,5
+     26				     ;RANDOM VALUE TO BX
+     27
+     28	0010  D1 E3		     SHL BX,1 ;BX*2
+     29	0012  2B C3		     SUB AX,BX;SUBSTRACT BX FROM AX
+     30	0014  D1 EB D1 EB D1 EB	D1+  SHR BX,4 ;BX/8
+     31	      EB
+     32	001C  2B C3		     SUB AX,BX
+     33
+     34	001E  1F		     POP DS
+     35	001F  CB		     RET
+     36
+     37	0020			     START ENDP
+     38	0020			     CODE ENDS
+     39				     END START
+Turbo Assembler	 Version 3.0	    03/16/22 16:55:14	    Page 2
+Symbol Table
+
+
+
+
+Symbol Name			  Type	 Value
+
+??DATE				  Text	 "03/16/22"
+??FILENAME			  Text	 "lab5t2  "
+??TIME				  Text	 "16:55:14"
+??VERSION			  Number 0300
+@CPU				  Text	 0101H
+@CURSEG				  Text	 CODE
+@FILENAME			  Text	 LAB5T2
+@WORDSIZE			  Text	 2
+START				  Far	 CODE:0000
+
+Groups & Segments		  Bit Size Align  Combine Class
+
+CODE				  16  0020 Para	  Public  CODE
+DATA				  16  0000 Para	  Public  DATA
+

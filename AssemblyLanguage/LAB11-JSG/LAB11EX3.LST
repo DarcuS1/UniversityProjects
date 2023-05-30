@@ -1,0 +1,68 @@
+Turbo Assembler	 Version 3.0	    05/04/22 15:46:10	    Page 1
+lab11ex3.asm
+
+
+
+      1	0000			     DATA SEGMENT PARA PUBLIC 'DATA'
+      2
+      3	0000  40400000		     TREI_F DD 3.0
+      4	0004  ????????????????	     REZ DQ ?
+      5
+      6	000C			     DATA ENDS
+      7
+      8
+      9	0000			     stk segment para STACK 'STACK'
+     10	0000  20*(73 74	61 63 6B  +   db 32 DUP	('stack_1')
+     11	      5F 31)
+     12	00E0			     stk ends
+     13
+     14
+     15	0000			     COD SEGMENT PARA 'CODE'
+     16	0000			     MAIN PROC FAR
+     17				      ASSUME CS:COD, DS:DATA
+     18	0000  1E			     PUSH DS
+     19	0001  33 C0			     XOR AX,AX
+     20	0003  50			     PUSH AX
+     21	0004  B8 0000s			     MOV AX,DATA
+     22	0007  8E D8			     MOV DS,AX
+     23
+     24	0009  9B DB E3			 FINIT ; pornire coprocessor
+     25	000C  9B D9 E8			     FLD1 ; punem 1 pe stack
+     26	000F  9B D8 36 0000r		     FDIV TREI_F ; impartim pe 1 la 3.0
+     27	0014  9B D9 F0			     F2XM1 ; 2^(1/3)-1.0
+     28	0017  9B D9 E8			     FLD1 ; incarcam 1 iarasi sa facem adunare
+     29	001A  9B DE C1			     FADD ; 2^(1/3)-1.0+1.0
+     30	001D  9B DD 1E 0004r		     FSTP REZ; mutam rezultatul
+     31
+     32	0022  9B			     FWAIT ;
+     33
+     34	0023  CB		      RET ;gives the control to	dos
+     35	0024			     MAIN ENDP
+     36	0024			     COD ENDS
+     37				     END MAIN
+Turbo Assembler	 Version 3.0	    05/04/22 15:46:10	    Page 2
+Symbol Table
+
+
+
+
+Symbol Name			  Type	 Value
+
+??DATE				  Text	 "05/04/22"
+??FILENAME			  Text	 "lab11ex3"
+??TIME				  Text	 "15:46:10"
+??VERSION			  Number 0300
+@CPU				  Text	 0101H
+@CURSEG				  Text	 COD
+@FILENAME			  Text	 LAB11EX3
+@WORDSIZE			  Text	 2
+MAIN				  Far	 COD:0000
+REZ				  Qword	 DATA:0004
+TREI_F				  Dword	 DATA:0000
+
+Groups & Segments		  Bit Size Align  Combine Class
+
+COD				  16  0024 Para	  none	  CODE
+DATA				  16  000C Para	  Public  DATA
+STK				  16  00E0 Para	  Stack	  STACK
+

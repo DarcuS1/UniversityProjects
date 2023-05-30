@@ -1,0 +1,76 @@
+Turbo Assembler	 Version 3.0	    03/09/22 18:15:39	    Page 1
+lab4word.asm
+
+
+
+      1	0000			     DATA SEGMENT PARA PUBLIC 'DATA'
+      2
+      3	0000  0001 0002	0003 0004    SIR DW 1,2,3,4
+      4				     ;schimbam din DB(byte ) in	DW
+      5	      =0004		     N EQU ($-SIR)/2
+      6				     ;este impartita marimea pentru difernta dintre byte si word
+      7	0008  0000		     SUM DW 0
+      8
+      9	000A			     DATA ENDS
+     10
+     11
+     12	0000			     CODE SEGMENT PARA PUBLIC 'CODE'
+     13				     ASSUME CS:CODE,DS:DATA
+     14
+     15	0000			     START PROC	FAR
+     16
+     17	0000  B8 0000s		     MOV AX,DATA
+     18	0003  8E D8		     MOV DS,AX
+     19
+     20	0005  33 C0		     XOR AX,AX
+     21				     ;facem AX 0
+     22	0007  BE 0000		     MOV SI,0
+     23				     ;facem indexul 0
+     24	000A  B9 0000		     MOV CX,0
+     25				     ;facem counter 0
+     26	000D  B1 04		     MOV CL,N
+     27				     ;facem counter lungimea sirului
+     28	000F			     L1:
+     29				     ;un loop
+     30	000F  03 84 0000r	     ADD AX,SIR[SI]
+     31				     ;adaugam elementele sirului la ax
+     32	0013  83 C6 02		     ADD SI,2
+     33				     ;adaugam 2	pentru diferenta de la byte la word
+     34
+     35	0016  E2 F7		     LOOP L1
+     36
+     37	0018  A3 0008r		     MOV SUM,AX
+     38				     ;mutam rezultatul ax in suma
+     39				     ;MOV AX,400CH
+     40	001B  CD 21		     INT 21H
+     41
+     42	001D			     START ENDP
+     43	001D			     CODE ENDS
+     44				     END START
+Turbo Assembler	 Version 3.0	    03/09/22 18:15:39	    Page 2
+Symbol Table
+
+
+
+
+Symbol Name			  Type	 Value
+
+??DATE				  Text	 "03/09/22"
+??FILENAME			  Text	 "lab4word"
+??TIME				  Text	 "18:15:39"
+??VERSION			  Number 0300
+@CPU				  Text	 0101H
+@CURSEG				  Text	 CODE
+@FILENAME			  Text	 LAB4WORD
+@WORDSIZE			  Text	 2
+L1				  Near	 CODE:000F
+N				  Number 0004
+SIR				  Word	 DATA:0000
+START				  Far	 CODE:0000
+SUM				  Word	 DATA:0008
+
+Groups & Segments		  Bit Size Align  Combine Class
+
+CODE				  16  001D Para	  Public  CODE
+DATA				  16  000A Para	  Public  DATA
+

@@ -1,0 +1,13 @@
+﻿EGC_Lab1.obj : error LNK2001: unresolved external symbol _SDL_GetWindowSurface
+EGC_Lab1.obj : error LNK2001: unresolved external symbol _SDL_Init
+EGC_Lab1.obj : error LNK2001: unresolved external symbol _SDL_DestroyWindow
+EGC_Lab1.obj : error LNK2001: unresolved external symbol _SDL_GetError
+EGC_Lab1.obj : error LNK2001: unresolved external symbol _SDL_Quit
+EGC_Lab1.obj : error LNK2001: unresolved external symbol _SDL_GetMouseState
+EGC_Lab1.obj : error LNK2001: unresolved external symbol _SDL_WaitEvent
+EGC_Lab1.obj : error LNK2001: unresolved external symbol _SDL_MapRGB
+EGC_Lab1.obj : error LNK2001: unresolved external symbol _SDL_CreateWindow
+EGC_Lab1.obj : error LNK2001: unresolved external symbol _SDL_FillRect
+EGC_Lab1.obj : error LNK2001: unresolved external symbol _SDL_UpdateWindowSurface
+MSVCRT.lib(exe_main.obj) : error LNK2001: unresolved external symbol _main
+C:\Users\gokuz\OneDrive\Desktop\cag\EGC_Lab1\Release\EGC_Lab1.exe : fatal error LNK1120: 12 unresolved externals

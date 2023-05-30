@@ -1,0 +1,63 @@
+Turbo Assembler	 Version 3.0	    03/23/22 16:49:12	    Page 1
+lab6ex6.asm
+
+
+
+      1	0000			     DATA SEGMENT PARA PUBLIC 'DATA'
+      2
+      3	0000  000B 000F		     STR1 DW 11,15   ;string cu	valori initiale
+      4	0004  02*(????)		     STR2 DW 2 DUP(?)  ;string in care o sa se scrie
+      5	0008			     DATA ENDS
+      6
+      7	0000			     CODE SEGMENT PARA PUBLIC 'CODE'
+      8				     ASSUME CS:CODE,DS:DATA
+      9
+     10
+     11	0000			     START PROC	FAR
+     12	0000  1E		     PUSH DS
+     13	0001  B8 0000s		     MOV AX,DATA
+     14	0004  8E D8		     MOV DS,AX
+     15
+     16	0006  A1 0000r		     MOV AX,STR1[0]  ;mut pe ax	si dau push
+     17	0009  50		     PUSH AX
+     18	000A  A1 0001r		     MOV AX,STR1[1]
+     19	000D  50		     PUSH AX
+     20							 ;luam valorile	in bx
+     21	000E  5B		     POP BX		;le punem in string 2
+     22	000F  89 1E 0004r	     MOV STR2[0],BX
+     23
+     24	0013  5B		     POP BX
+     25	0014  89 1E 0005r	     MOV STR2[1],BX
+     26
+     27
+     28	0018  1F		     POP DS
+     29	0019  CB		     RET
+     30
+     31	001A			     START ENDP
+     32	001A			     CODE ENDS
+     33				     END START
+Turbo Assembler	 Version 3.0	    03/23/22 16:49:12	    Page 2
+Symbol Table
+
+
+
+
+Symbol Name			  Type	 Value
+
+??DATE				  Text	 "03/23/22"
+??FILENAME			  Text	 "lab6ex6 "
+??TIME				  Text	 "16:49:12"
+??VERSION			  Number 0300
+@CPU				  Text	 0101H
+@CURSEG				  Text	 CODE
+@FILENAME			  Text	 LAB6EX6
+@WORDSIZE			  Text	 2
+START				  Far	 CODE:0000
+STR1				  Word	 DATA:0000
+STR2				  Word	 DATA:0004
+
+Groups & Segments		  Bit Size Align  Combine Class
+
+CODE				  16  001A Para	  Public  CODE
+DATA				  16  0008 Para	  Public  DATA
+

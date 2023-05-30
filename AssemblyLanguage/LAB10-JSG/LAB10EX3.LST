@@ -1,0 +1,253 @@
+Turbo Assembler	 Version 3.0	    04/20/22 14:20:04	    Page 1
+lab10ex3.asm
+
+
+
+      1	0000			     DATA SEGMENT PARA PUBLIC 'DATA'
+      2
+      3	0000			     DATA ENDS
+      4
+      5
+      6				     INTIR MACRO TIME
+      7				      LOCAL P1,	P2 ;p1 and p2 are local	labels
+      8				      PUSH DX
+      9				      PUSH CX
+     10				      MOV DX, TIME ; loads a delay in dx
+     11				     P1: MOV CX, 0FF00H	;loads cx with 0FF00h
+     12
+     13				     P2: DEC CX	;delays	by decrementing	cx
+     14				      JNZ P2 ;if cx!=0 continue
+     15				      DEC DX ;if cx=0 decrements dx
+     16				      JNZ P1 ;if dx!=0 loads again cx
+     17				      POP CX ;if dx=0 remake cx	and dx
+     18				      POP DX
+     19				      ENDM
+     20
+     21
+     22	0000			     COD SEGMENT PARA 'CODE'
+     23	0000			     MAIN PROC FAR
+     24				      ASSUME CS:COD, DS:DATA
+     25
+     26	0000  1E		      PUSH DS ;saves ds
+     27	0001  33 C0		      XOR AX, AX ;0 in ax
+     28	0003  50		      PUSH AX ;puts 0 on the stack
+     29	0004  B8 0000s		      MOV AX, DATA ;puts seg data in ax
+     30	0007  8E D8		      MOV DS,AX
+     31	0009  33 C0		      XOR AX, AX
+     32	000B  33 DB		      XOR BX, BX
+     33	000D  33 C9		      XOR CX,CX
+     34
+     35	000F  B4 00		      MOV AH, 00H ; CLEAR SCREEN
+     36	0011  B0 03		      MOV AL, 03H
+     37	0013  CD 10		      INT 10H
+     38
+     39				      INTIR 400	; DELAY
+1    40	0015  52		      PUSH DX
+1    41	0016  51		      PUSH CX
+1    42	0017  BA 0190		      MOV DX, 400 ; loads a delay in dx
+1    43	001A  B9 FF00		     ??0000: MOV CX, 0FF00H ;loads cx with 0FF00h
+1    44
+1    45	001D  49		     ??0001: DEC CX ;delays by decrementing cx
+1    46	001E  75 FD		      JNZ ??0001 ;if cx!=0 continue
+1    47	0020  4A		      DEC DX ;if cx=0 decrements dx
+1    48	0021  75 F7		      JNZ ??0000 ;if dx!=0 loads again cx
+1    49	0023  59		      POP CX ;if dx=0 remake cx	and dx
+1    50	0024  5A		      POP DX
+     51				      ;	THE FIRST SQUARE
+     52	0025  B4 06		      MOV AH, 06H
+     53	0027  B0 05		      MOV AL, 5	; NR OF	LINES
+     54	0029  B7 10		      MOV BH, 00010000b	; COLOR
+     55	002B  B5 00		      MOV CH, 0	; TOP ROW OF WINDOW
+     56	002D  B1 00		      MOV CL, 0	; LEFT COLUMN
+     57	002F  B6 0A		      MOV DH, 10 ; BOTTOM ROW
+Turbo Assembler	 Version 3.0	    04/20/22 14:20:04	    Page 2
+lab10ex3.asm
+
+
+
+     58	0031  B2 0A		      MOV DL, 10 ; RIGHT COLUMN
+     59	0033  CD 10		      INT 10H
+     60
+     61				      INTIR 400	; DELAY
+1    62	0035  52		      PUSH DX
+1    63	0036  51		      PUSH CX
+1    64	0037  BA 0190		      MOV DX, 400 ; loads a delay in dx
+1    65	003A  B9 FF00		     ??0002: MOV CX, 0FF00H ;loads cx with 0FF00h
+1    66
+1    67	003D  49		     ??0003: DEC CX ;delays by decrementing cx
+1    68	003E  75 FD		      JNZ ??0003 ;if cx!=0 continue
+1    69	0040  4A		      DEC DX ;if cx=0 decrements dx
+1    70	0041  75 F7		      JNZ ??0002 ;if dx!=0 loads again cx
+1    71	0043  59		      POP CX ;if dx=0 remake cx	and dx
+1    72	0044  5A		      POP DX
+     73
+     74	0045  B4 06		      MOV AH, 06H
+     75	0047  B0 05		      MOV AL, 5
+     76	0049  B7 30		      MOV BH, 00110000b
+     77	004B  B5 00		      MOV CH, 0
+     78	004D  B1 41		      MOV CL, 65
+     79	004F  B6 0A		      MOV DH, 10
+     80	0051  B2 4B		      MOV DL, 75
+     81	0053  CD 10		      INT 10H
+     82
+     83
+     84				      INTIR 400	; DELAY
+1    85	0055  52		      PUSH DX
+1    86	0056  51		      PUSH CX
+1    87	0057  BA 0190		      MOV DX, 400 ; loads a delay in dx
+1    88	005A  B9 FF00		     ??0004: MOV CX, 0FF00H ;loads cx with 0FF00h
+1    89
+1    90	005D  49		     ??0005: DEC CX ;delays by decrementing cx
+1    91	005E  75 FD		      JNZ ??0005 ;if cx!=0 continue
+1    92	0060  4A		      DEC DX ;if cx=0 decrements dx
+1    93	0061  75 F7		      JNZ ??0004 ;if dx!=0 loads again cx
+1    94	0063  59		      POP CX ;if dx=0 remake cx	and dx
+1    95	0064  5A		      POP DX
+     96
+     97	0065  B4 06		       MOV AH, 06H
+     98	0067  B0 05		      MOV AL, 5
+     99	0069  B7 F0		      MOV BH, 11110000b
+    100	006B  B5 00		      MOV CH, 0
+    101	006D  B1 36		      MOV CL, 54
+    102	006F  B6 12		      MOV DH, 18
+    103	0071  B2 40		      MOV DL, 64
+    104	0073  CD 10		      INT 10H
+    105
+    106				      INTIR 400	; DELAY
+1   107	0075  52		      PUSH DX
+1   108	0076  51		      PUSH CX
+1   109	0077  BA 0190		      MOV DX, 400 ; loads a delay in dx
+1   110	007A  B9 FF00		     ??0006: MOV CX, 0FF00H ;loads cx with 0FF00h
+1   111
+1   112	007D  49		     ??0007: DEC CX ;delays by decrementing cx
+1   113	007E  75 FD		      JNZ ??0007 ;if cx!=0 continue
+1   114	0080  4A		      DEC DX ;if cx=0 decrements dx
+Turbo Assembler	 Version 3.0	    04/20/22 14:20:04	    Page 3
+lab10ex3.asm
+
+
+
+1   115	0081  75 F7		      JNZ ??0006 ;if dx!=0 loads again cx
+1   116	0083  59		      POP CX ;if dx=0 remake cx	and dx
+1   117	0084  5A		      POP DX
+    118
+    119
+    120	0085  B4 06		      MOV AH, 06H
+    121	0087  B0 05		      MOV AL, 5
+    122	0089  B7 C0		      MOV BH, 11000000b
+    123	008B  B5 00		      MOV CH, 0
+    124	008D  B1 2C		      MOV CL, 44
+    125	008F  B6 06		      MOV DH, 6
+    126	0091  B2 36		      MOV DL, 54
+    127	0093  CD 10		      INT 10H
+    128
+    129
+    130				      INTIR 400	; DELAY
+1   131	0095  52		      PUSH DX
+1   132	0096  51		      PUSH CX
+1   133	0097  BA 0190		      MOV DX, 400 ; loads a delay in dx
+1   134	009A  B9 FF00		     ??0008: MOV CX, 0FF00H ;loads cx with 0FF00h
+1   135
+1   136	009D  49		     ??0009: DEC CX ;delays by decrementing cx
+1   137	009E  75 FD		      JNZ ??0009 ;if cx!=0 continue
+1   138	00A0  4A		      DEC DX ;if cx=0 decrements dx
+1   139	00A1  75 F7		      JNZ ??0008 ;if dx!=0 loads again cx
+1   140	00A3  59		      POP CX ;if dx=0 remake cx	and dx
+1   141	00A4  5A		      POP DX
+    142
+    143
+    144	00A5  B4 06		      MOV AH, 06H
+    145	00A7  B0 05		      MOV AL, 5
+    146	00A9  B7 20		      MOV BH, 00100000b
+    147	00AB  B5 00		      MOV CH, 0
+    148	00AD  B1 0B		      MOV CL, 11
+    149	00AF  B6 12		      MOV DH, 18
+    150	00B1  B2 15		      MOV DL, 21
+    151	00B3  CD 10		      INT 10H
+    152
+    153				       INTIR 400 ; DELAY
+1   154	00B5  52		      PUSH DX
+1   155	00B6  51		      PUSH CX
+1   156	00B7  BA 0190		      MOV DX, 400 ; loads a delay in dx
+1   157	00BA  B9 FF00		     ??000A: MOV CX, 0FF00H ;loads cx with 0FF00h
+1   158
+1   159	00BD  49		     ??000B: DEC CX ;delays by decrementing cx
+1   160	00BE  75 FD		      JNZ ??000B ;if cx!=0 continue
+1   161	00C0  4A		      DEC DX ;if cx=0 decrements dx
+1   162	00C1  75 F7		      JNZ ??000A ;if dx!=0 loads again cx
+1   163	00C3  59		      POP CX ;if dx=0 remake cx	and dx
+1   164	00C4  5A		      POP DX
+    165
+    166	00C5  B4 06		      MOV AH, 06H
+    167	00C7  B0 05		      MOV AL, 5
+    168	00C9  B7 E0		      MOV BH, 11100000b
+    169	00CB  B5 00		      MOV CH, 0
+    170	00CD  B1 17		      MOV CL, 23
+    171	00CF  B6 12		      MOV DH, 18
+Turbo Assembler	 Version 3.0	    04/20/22 14:20:04	    Page 4
+lab10ex3.asm
+
+
+
+    172	00D1  B2 21		      MOV DL, 33
+    173	00D3  CD 10		      INT 10H
+    174
+    175				       INTIR 400 ; DELAY
+1   176	00D5  52		      PUSH DX
+1   177	00D6  51		      PUSH CX
+1   178	00D7  BA 0190		      MOV DX, 400 ; loads a delay in dx
+1   179	00DA  B9 FF00		     ??000C: MOV CX, 0FF00H ;loads cx with 0FF00h
+1   180
+1   181	00DD  49		     ??000D: DEC CX ;delays by decrementing cx
+1   182	00DE  75 FD		      JNZ ??000D ;if cx!=0 continue
+1   183	00E0  4A		      DEC DX ;if cx=0 decrements dx
+1   184	00E1  75 F7		      JNZ ??000C ;if dx!=0 loads again cx
+1   185	00E3  59		      POP CX ;if dx=0 remake cx	and dx
+1   186	00E4  5A		      POP DX
+    187
+    188
+    189	00E5  CB		      RET ;gives the control to	dos
+    190	00E6			     MAIN ENDP
+    191	00E6			     COD ENDS
+    192				     END MAIN
+Turbo Assembler	 Version 3.0	    04/20/22 14:20:04	    Page 5
+Symbol Table
+
+
+
+
+Symbol Name			  Type	 Value
+
+??0000				  Near	 COD:001A
+??0001				  Near	 COD:001D
+??0002				  Near	 COD:003A
+??0003				  Near	 COD:003D
+??0004				  Near	 COD:005A
+??0005				  Near	 COD:005D
+??0006				  Near	 COD:007A
+??0007				  Near	 COD:007D
+??0008				  Near	 COD:009A
+??0009				  Near	 COD:009D
+??000A				  Near	 COD:00BA
+??000B				  Near	 COD:00BD
+??000C				  Near	 COD:00DA
+??000D				  Near	 COD:00DD
+??DATE				  Text	 "04/20/22"
+??FILENAME			  Text	 "lab10ex3"
+??TIME				  Text	 "14:20:04"
+??VERSION			  Number 0300
+@CPU				  Text	 0101H
+@CURSEG				  Text	 COD
+@FILENAME			  Text	 LAB10EX3
+@WORDSIZE			  Text	 2
+MAIN				  Far	 COD:0000
+
+Macro Name
+
+INTIR
+
+Groups & Segments		  Bit Size Align  Combine Class
+
+COD				  16  00E6 Para	  none	  CODE
+DATA				  16  0000 Para	  Public  DATA
+

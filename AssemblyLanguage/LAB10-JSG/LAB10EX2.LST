@@ -1,0 +1,188 @@
+Turbo Assembler	 Version 3.0	    04/20/22 14:35:21	    Page 1
+lab10ex2.asm
+
+
+
+      1
+      2	0000			     DATA SEGMENT PARA PUBLIC 'DATA'
+      3	0000  54 48 45 20 53 55	4D+   STRING DB	'THE SUM IS: $'
+      4	      20 49 53 3A 20 24
+      5	000D  06		      MAXLEN DB	6
+      6	000E  ??		      ACTLEN DB	?
+      7	000F  04*(??)		      BUFFER DB	4 DUP(?)
+      8	0013			     DATA ENDS
+      9
+     10
+     11	0000			     COD SEGMENT PARA 'CODE' ;code segment definition
+     12	0000			     PROCED PROC FAR ;procedure	with proced name
+     13				      ASSUME CS:COD, DS:DATA
+     14				      ;procedure
+     15	0000  1E		      PUSH DS ;saves ds
+     16	0001  33 C0		      XOR AX, AX ;0 in ax
+     17	0003  50		      PUSH AX ;puts 0 on the stack
+     18	0004  B8 0000s		      MOV AX, DATA ;puts seg data in ax
+     19	0007  8E D8		      MOV DS,AX
+     20	0009  33 C0		      XOR AX, AX
+     21	000B  33 DB		      XOR BX, BX
+     22	000D  33 C9		      XOR CX,CX
+     23
+     24	000F  B4 0A		      MOV AH, 0AH
+     25	0011  BA 000Dr		      MOV DX, OFFSET MAXLEN
+     26	0014  CD 21		      INT 21H
+     27
+     28	0016  33 C0		      XOR AX, AX
+     29
+     30	0018  B0 64		      MOV AL, 100
+     31	001A  80 2E 000Fr 30	      SUB BUFFER[0], '0'
+     32	001F  8A 0E 000Fr	      MOV CL, BUFFER[0]
+     33	0023  F6 E1		      MUL CL
+     34	0025  03 D8		      ADD BX, AX
+     35
+     36	0027  33 C0		      XOR AX, AX
+     37
+     38	0029  B0 0A		      MOV AL, 10
+     39	002B  80 2E 0010r 30	      SUB BUFFER[1], '0'
+     40	0030  8A 0E 0010r	      MOV CL, BUFFER[1]
+     41	0034  F6 E1		      MUL CL
+     42	0036  03 D8		      ADD BX, AX
+     43
+     44	0038  33 C9		      XOR CX, CX
+     45
+     46	003A  80 2E 0011r 30	      SUB BUFFER[2], '0'
+     47	003F  8A 0E 0011r	      MOV CL, BUFFER[2]
+     48	0043  03 D9		      ADD BX, CX
+     49
+     50	0045  53		      PUSH BX
+     51
+     52				      ;------------------------
+     53
+     54	0046  33 DB		      XOR BX, BX
+     55	0048  33 C9		      XOR CX,CX
+     56
+     57	004A  B2 0A		      MOV DL, 10 ; WE PRINT AN ENDLINE,	SO WE CAN PRINT	THE CAPITAL LETTER IN A	NEW LINE
+Turbo Assembler	 Version 3.0	    04/20/22 14:35:21	    Page 2
+lab10ex2.asm
+
+
+
+     58	004C  B4 02		      MOV AH, 02H
+     59	004E  CD 21		      INT 21H
+     60
+     61	0050  B4 0A		      MOV AH, 0AH
+     62	0052  BA 000Dr		      MOV DX, OFFSET MAXLEN
+     63	0055  CD 21		      INT 21H
+     64
+     65	0057  33 C0		      XOR AX, AX
+     66
+     67	0059  B0 64		      MOV AL, 100
+     68	005B  80 2E 000Fr 30	      SUB BUFFER[0], '0'
+     69	0060  8A 0E 000Fr	      MOV CL, BUFFER[0]
+     70	0064  F6 E1		      MUL CL
+     71	0066  03 D8		      ADD BX, AX
+     72
+     73	0068  33 C0		      XOR AX, AX
+     74
+     75	006A  B0 0A		      MOV AL, 10
+     76	006C  80 2E 0010r 30	      SUB BUFFER[1], '0'
+     77	0071  8A 0E 0010r	      MOV CL, BUFFER[1]
+     78	0075  F6 E1		      MUL CL
+     79	0077  03 D8		      ADD BX, AX
+     80
+     81	0079  33 C9		      XOR CX, CX
+     82
+     83	007B  80 2E 0011r 30	      SUB BUFFER[2], '0'
+     84	0080  8A 0E 0011r	      MOV CL, BUFFER[2]
+     85	0084  03 D9		      ADD BX, CX
+     86
+     87	0086  58		      POP AX
+     88
+     89	0087  03 C3		      ADD AX, BX
+     90
+     91
+     92				      ;-----------------------
+     93	0089  33 C9		      XOR CX, CX
+     94	008B  33 DB		      XOR BX, BX
+     95
+     96
+     97	008D  B1 0A		      MOV CL, 10
+     98
+     99	008F  BE 0000		      MOV SI, 0
+    100
+    101	0092			      NEXT1: ; LOOP TO PUT ALL THE NUMBER CHARACTERS/DIGITS OF THE AVERAGE TO THE STACK
+    102
+    103	0092  F6 F1			     DIV CL ; WE DIVIDE	BY 10, AND THE REMAINDER WILL BE IN AH,	SO WE MAKE A MODULO 10	    +
+    104				     INSTRUCTION
+    105	0094  8B D8			     MOV BX, AX
+    106	0096  B8 0000			     MOV AX, 0
+    107	0099  8A C7			     MOV AL, BH
+    108	009B  50			     PUSH AX ; WE USE THE STACK	TO STORE THE NUMBERS, IT IS VERY GOOD TO STORE HERE,	    +
+    109				     OTHERWISE WE WOULD	PRINT THE NUMBER VICE VERSA
+    110
+    111	009C  B7 00			     MOV BH, 0
+    112
+    113	009E  46			     INC SI ; STORE THE	NUMBER OF DIGITS OF THE	AVERAGE
+    114
+Turbo Assembler	 Version 3.0	    04/20/22 14:35:21	    Page 3
+lab10ex2.asm
+
+
+
+    115	009F  8B C3			     MOV AX, BX
+    116
+    117	00A1  83 FB 00			     CMP BX, 0 ; LOOP IF BX IS NOT 0
+    118	00A4  75 EC			     JNE NEXT1
+    119
+    120	00A6  33 C9		      XOR CX, CX
+    121
+    122	00A8  8B CE		      MOV CX, SI
+    123
+    124	00AA  B2 0A		      MOV DL, 10 ; WE PRINT AN ENDLINE,	SO WE CAN PRINT	THE CAPITAL LETTER IN A	NEW LINE
+    125	00AC  B4 02		      MOV AH, 02H
+    126	00AE  CD 21		      INT 21H
+    127
+    128	00B0  BA 0000r		      MOV DX, OFFSET STRING
+    129	00B3  B4 09		      MOV AH, 09H ; WE PRINT OUT THE STRING
+    130	00B5  CD 21		      INT 21H
+    131
+    132	00B7			      NEXT2: ; LOOP TO PRINT OUT THE NUMBER
+    133
+    134	00B7  5A			     POP DX
+    135	00B8  83 C2 30			     ADD DX, 48	; WE ADD 48 TO PRINT OUT THE DIGITS
+    136	00BB  B4 02			     MOV AH, 02H ; WE PRINT OUT	THE DIGITS ONE BY ONE
+    137	00BD  CD 21			     INT 21H
+    138
+    139	00BF  E2 F6		      LOOP NEXT2
+    140
+    141	00C1  CB		      RET ;gives the control to	dos
+    142	00C2			      PROCED ENDP ;procedure end
+    143	00C2			     COD ENDS
+    144				     END PROCED
+Turbo Assembler	 Version 3.0	    04/20/22 14:35:21	    Page 4
+Symbol Table
+
+
+
+
+Symbol Name			  Type	 Value
+
+??DATE				  Text	 "04/20/22"
+??FILENAME			  Text	 "lab10ex2"
+??TIME				  Text	 "14:35:21"
+??VERSION			  Number 0300
+@CPU				  Text	 0101H
+@CURSEG				  Text	 COD
+@FILENAME			  Text	 LAB10EX2
+@WORDSIZE			  Text	 2
+ACTLEN				  Byte	 DATA:000E
+BUFFER				  Byte	 DATA:000F
+MAXLEN				  Byte	 DATA:000D
+NEXT1				  Near	 COD:0092
+NEXT2				  Near	 COD:00B7
+PROCED				  Far	 COD:0000
+STRING				  Byte	 DATA:0000
+
+Groups & Segments		  Bit Size Align  Combine Class
+
+COD				  16  00C2 Para	  none	  CODE
+DATA				  16  0013 Para	  Public  DATA
+

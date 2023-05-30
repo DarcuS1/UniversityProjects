@@ -1,0 +1,5 @@
+﻿  Bezier.cpp
+C:\Users\gokuz\source\repos\EGC_Bezier\EGC_Bezier\Bezier.cpp(23,13): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\gokuz\source\repos\EGC_Bezier\EGC_Bezier\Bezier.cpp(32,47): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\gokuz\source\repos\EGC_Bezier\EGC_Bezier\Bezier.cpp(32,38): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  EGC_Bezier.vcxproj -> C:\Users\gokuz\source\repos\EGC_Bezier\Debug\EGC_Bezier.exe

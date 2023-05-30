@@ -1,0 +1,80 @@
+Turbo Assembler	 Version 3.0	    03/09/22 18:15:30	    Page 1
+lab4task2.asm
+
+
+
+      1
+      2	0000			     DATA SEGMENT PARA PUBLIC 'DATA'
+      3	0000  FA FA 03 04	     SIR DB 250,250,3,4
+      4
+      5	      =0004		     N EQU $-SIR
+      6				     ;we get sir length	from substracting adresses
+      7
+      8	0004  0000		     SUM DW 0
+      9				     ;sum goes from db to dw(byte to word)
+     10	0006			     DATA ENDS
+     11
+     12	0000			     CODE SEGMENT PARA PUBLIC 'CODE'
+     13				     ASSUME CS:CODE,DS:DATA
+     14
+     15
+     16	0000			     START PROC	FAR
+     17
+     18	0000  B8 0000s		     MOV AX,DATA
+     19	0003  8E D8		     MOV DS,AX
+     20
+     21	0005  33 C0		     XOR AX,AX
+     22				     ;make the ax reg 0
+     23	0007  BE 0000		     MOV SI,0
+     24				     ;make index 0
+     25	000A  33 C9		     XOR CX,CX
+     26				     ;make cx 0
+     27	000C  B1 04		     MOV CL,N
+     28				     ;make cl 0
+     29	000E  33 DB		     XOR BX,BX
+     30				     ;using the	auxiliary register bx that is made 0
+     31	0010			     L1:
+     32				     ;a	loop
+     33	0010  02 9C 0000r	     ADD BL,SIR[SI]
+     34				     ;add sir of si in bl
+     35	0014  03 C3		     ADD AX,BX
+     36				     ;add the whole registers
+     37	0016  33 DB		     XOR BX,BX
+     38				     ;clean bx
+     39	0018  46		     INC SI
+     40				     ;increment	si by 1
+     41	0019  E2 F5		     LOOP L1
+     42
+     43	001B  A3 0004r		     MOV SUM,AX
+     44				     ;mov the result to	sum
+     45	001E  CB		     RET
+     46	001F			     START ENDP
+     47	001F			     CODE ENDS
+     48				     END START
+Turbo Assembler	 Version 3.0	    03/09/22 18:15:30	    Page 2
+Symbol Table
+
+
+
+
+Symbol Name			  Type	 Value
+
+??DATE				  Text	 "03/09/22"
+??FILENAME			  Text	 "lab4task"
+??TIME				  Text	 "18:15:30"
+??VERSION			  Number 0300
+@CPU				  Text	 0101H
+@CURSEG				  Text	 CODE
+@FILENAME			  Text	 LAB4TASK
+@WORDSIZE			  Text	 2
+L1				  Near	 CODE:0010
+N				  Number 0004
+SIR				  Byte	 DATA:0000
+START				  Far	 CODE:0000
+SUM				  Word	 DATA:0004
+
+Groups & Segments		  Bit Size Align  Combine Class
+
+CODE				  16  001F Para	  Public  CODE
+DATA				  16  0006 Para	  Public  DATA
+

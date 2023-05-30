@@ -1,0 +1,68 @@
+Turbo Assembler	 Version 3.0	    03/23/22 16:48:59	    Page 1
+lab6ex3.asm
+
+
+
+      1	0000			     DATA SEGMENT PARA PUBLIC 'DATA'
+      2
+      3	0000  0F		     NUM1 DB 15
+      4
+      5	0001			     DATA ENDS
+      6
+      7	0000			     CODE SEGMENT PARA PUBLIC 'CODE'
+      8				     ASSUME CS:CODE,DS:DATA
+      9
+     10
+     11	0000			     START PROC	FAR
+     12	0000  1E		     PUSH DS
+     13	0001  B8 0000s		     MOV AX,DATA
+     14	0004  8E D8		     MOV DS,AX
+     15
+     16	0006  8C D5		     MOV BP,SS
+     17	0008  33 DB		     XOR BX,BX
+     18	000A  8A 1E 0000r	     MOV BL,NUM1
+     19	000E  89 5E FE		     MOV WORD PTR [BP-2],BX
+     20	0011  43		     INC BX
+     21	0012  89 5E FC		     MOV WORD PTR [BP-4],BX
+     22	0015  43		     INC BX
+     23	0016  89 5E FA		     MOV WORD PTR [BP-6],BX
+     24	0019  43		     INC BX
+     25	001A  89 5E F8		     MOV WORD PTR [BP-8],BX
+     26
+     27	001D  33 C0		     XOR AX,AX
+     28	001F  58		     POP AX
+     29	0020  58		     POP AX
+     30	0021  58		     POP AX
+     31	0022  58		     POP AX
+     32
+     33
+     34	0023  1F		     POP DS
+     35	0024  CB		     RET
+     36
+     37	0025			     START ENDP
+     38	0025			     CODE ENDS
+     39				     END START
+Turbo Assembler	 Version 3.0	    03/23/22 16:48:59	    Page 2
+Symbol Table
+
+
+
+
+Symbol Name			  Type	 Value
+
+??DATE				  Text	 "03/23/22"
+??FILENAME			  Text	 "lab6ex3 "
+??TIME				  Text	 "16:48:58"
+??VERSION			  Number 0300
+@CPU				  Text	 0101H
+@CURSEG				  Text	 CODE
+@FILENAME			  Text	 LAB6EX3
+@WORDSIZE			  Text	 2
+NUM1				  Byte	 DATA:0000
+START				  Far	 CODE:0000
+
+Groups & Segments		  Bit Size Align  Combine Class
+
+CODE				  16  0025 Para	  Public  CODE
+DATA				  16  0001 Para	  Public  DATA
+

@@ -1,0 +1,89 @@
+Turbo Assembler	 Version 3.0	    04/10/22 23:32:26	    Page 1
+lab9ns.asm
+
+
+
+      1	0000			     DATA SEGMENT PARA PUBLIC 'DATA'
+      2
+      3	0000  35 36 37		     SIR DB "567";INITIALIZE A STRING WITH LENGTH AND ADDRES,AND A
+      4	0003  0003		     LEN DW $-SIR ;SUM AS RESULT
+      5	0005  00000000sr	     ADD1 DD SIR
+      6	0009  ????		     SUMSIR DW ?
+      7
+      8	000B			     DATA ENDS
+      9
+     10
+     11
+     12	0000			     CODE SEGMENT PARA PUBLIC 'CODE'
+     13				     ASSUME CS:CODE,DS:DATA
+     14
+     15	0000			     SUM PROC NEAR
+     16	0000  B8 0000s		     MOV AX, DATA;SUM PROCEDURE, DATA INITIALIZATION
+     17	0003  8E C0		     MOV ES, AX
+     18				     ASSUME ES:DATA
+     19
+     20	0005  C7 06 0009r 0000	     MOV SUMSIR, 0
+     21	000B  8E DA		     MOV DS, DX
+     22	000D  33 C0		     XOR AX, AX
+     23	000F  33 F6		     XOR SI, SI
+     24
+     25	0011			     l1:
+     26	0011  8A 00		     MOV AL, DS:BX[SI];CALCULATING THE VALUE OF	EACH DIGIT OF THE STRING
+     27	0013  2C 30		     SUB AL, '0';AND ADDING THEM TO RESULT (FROM ASCII TO INT THEN ADD TO SUMSIR)
+     28	0015  01 06 0009r	     ADD SUMSIR, AX
+     29	0019  46		     INC SI
+     30	001A  E2 F5		     LOOP l1
+     31
+     32	001C  A1 0009r		     MOV AX, SUMSIR
+     33	001F  C3		     RET
+     34
+     35	0020			     SUM ENDP
+     36
+     37	0020			     START PROC	FAR
+     38
+     39	0020  1E		     PUSH DS
+     40	0021  33 C0		     XOR AX, AX
+     41	0023  50		     PUSH AX
+     42	0024  B8 0000s		     MOV AX, DATA
+     43	0027  8E D8		     MOV DS, AX
+     44
+     45	0029  C5 1E 0005r	     LDS BX, ADD1;GIVE THE REGISTERS THE DATA BEFORE CALL
+     46	002D  8B 0E 0003r	     MOV CX, LEN
+     47	0031  8C DA		     MOV DX, DS
+     48
+     49	0033  E8 FFCA		     CALL SUM
+     50
+     51	0036  CB		     RET
+     52
+     53	0037			     START ENDP
+     54	0037			     CODE ENDS
+     55				     END START
+Turbo Assembler	 Version 3.0	    04/10/22 23:32:26	    Page 2
+Symbol Table
+
+
+
+
+Symbol Name			  Type	 Value
+
+??DATE				  Text	 "04/10/22"
+??FILENAME			  Text	 "lab9ns  "
+??TIME				  Text	 "23:32:26"
+??VERSION			  Number 0300
+@CPU				  Text	 0101H
+@CURSEG				  Text	 CODE
+@FILENAME			  Text	 LAB9NS
+@WORDSIZE			  Text	 2
+ADD1				  Dword	 DATA:0005
+L1				  Near	 CODE:0011
+LEN				  Word	 DATA:0003
+SIR				  Byte	 DATA:0000
+START				  Far	 CODE:0020
+SUM				  Near	 CODE:0000
+SUMSIR				  Word	 DATA:0009
+
+Groups & Segments		  Bit Size Align  Combine Class
+
+CODE				  16  0037 Para	  Public  CODE
+DATA				  16  000B Para	  Public  DATA
+

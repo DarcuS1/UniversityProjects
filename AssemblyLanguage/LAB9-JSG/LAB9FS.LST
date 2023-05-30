@@ -1,0 +1,102 @@
+Turbo Assembler	 Version 3.0	    04/10/22 23:32:14	    Page 1
+lab9fs.asm
+
+
+
+      1	0000			     DATA SEGMENT PARA PUBLIC 'DATA'
+      2
+      3	0000  35 36 37		     SIR DB "567";INITIALIZE A STRING WITH LENGTH AND ADDRES,AND A
+      4	0003  0003		     LEN DW $-SIR ;SUM AS RESULT
+      5	0005  00000000sr	     ADD1 DD SIR
+      6	0009  ????		     SUM1 DW ?
+      7
+      8	000B			     DATA ENDS
+      9
+     10
+     11
+     12	0000			     CODE SEGMENT PARA PUBLIC 'CODE'
+     13				     ASSUME CS:CODE,DS:DATA
+     14
+     15	0000			     START PROC	FAR
+     16
+     17	0000  1E		     PUSH DS
+     18	0001  33 C0		     XOR AX, AX
+     19	0003  50		     PUSH AX
+     20	0004  B8 0000s		     MOV AX, DATA
+     21	0007  8E D8		     MOV DS, AX
+     22
+     23	0009  C5 1E 0005r	     LDS BX, ADD1;GIVE THE REGISTERS THE DATA BEFORE CALL
+     24	000D  8B 0E 0003r	     MOV CX, LEN
+     25	0011  8C DA		     MOV DX, DS
+     26
+     27	0013  9A 00000000sr	     CALL SUM
+     28
+     29	0018  CB		     RET
+     30
+     31	0019			     START ENDP
+     32	0019			     CODE ENDS
+     33
+     34
+     35
+     36	0000			     COD2 SEGMENT PARA PUBLIC 'CODE'
+     37
+     38				     ASSUME CS:COD2
+     39				     ASSUME ES:DATA
+     40	0000			     SUM PROC FAR
+     41	0000  B8 0000s		     MOV AX, DATA;SUM PROCEDURE, DATA INITIALIZATION
+     42	0003  8E C0		     MOV ES, AX
+     43				     ;ASSUME ES:DATA
+     44
+     45	0005  C7 06 0009r 0000	     MOV SUM1, 0
+     46	000B  8E DA		     MOV DS, DX
+     47	000D  33 C0		     XOR AX, AX
+     48	000F  33 F6		     XOR SI, SI
+     49
+     50	0011			     l1:
+     51	0011  8A 00		     MOV AL, DS:BX[SI];CALCULATING THE VALUE OF	EACH DIGIT OF THE STRING
+     52	0013  2C 30		     SUB AL, '0';AND ADDING THEM TO RESULT (FROM ASCII TO INT THEN ADD TO SUMSIR)
+     53	0015  01 06 0009r	     ADD SUM1, AX
+     54	0019  46		     INC SI
+     55	001A  E2 F5		     LOOP l1
+     56
+     57	001C  A1 0009r		     MOV AX, SUM1
+Turbo Assembler	 Version 3.0	    04/10/22 23:32:14	    Page 2
+lab9fs.asm
+
+
+
+     58	001F  CB		     RETF
+     59
+     60	0020			     SUM ENDP
+     61	0020			     COD2 ENDS
+     62				     END START
+Turbo Assembler	 Version 3.0	    04/10/22 23:32:14	    Page 3
+Symbol Table
+
+
+
+
+Symbol Name			  Type	 Value
+
+??DATE				  Text	 "04/10/22"
+??FILENAME			  Text	 "lab9fs  "
+??TIME				  Text	 "23:32:14"
+??VERSION			  Number 0300
+@CPU				  Text	 0101H
+@CURSEG				  Text	 COD2
+@FILENAME			  Text	 LAB9FS
+@WORDSIZE			  Text	 2
+ADD1				  Dword	 DATA:0005
+L1				  Near	 COD2:0011
+LEN				  Word	 DATA:0003
+SIR				  Byte	 DATA:0000
+START				  Far	 CODE:0000
+SUM				  Far	 COD2:0000
+SUM1				  Word	 DATA:0009
+
+Groups & Segments		  Bit Size Align  Combine Class
+
+COD2				  16  0020 Para	  Public  CODE
+CODE				  16  0019 Para	  Public  CODE
+DATA				  16  000B Para	  Public  DATA
+

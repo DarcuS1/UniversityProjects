@@ -1,0 +1,4 @@
+﻿  SDL_TriangleRender.cpp
+rasterization.lib(rasterizationValidator.obj) : warning LNK4099: PDB '' was not found with 'rasterization.lib(rasterizationValidator.obj)' or at ''; linking object as if no debug info
+rasterization.lib(vec4.obj) : warning LNK4099: PDB '' was not found with 'rasterization.lib(vec4.obj)' or at ''; linking object as if no debug info
+  SDL_TriangleRender.vcxproj -> C:\Users\gokuz\OneDrive\Desktop\SDL_TriangleRender\Debug\SDL_TriangleRender.exe

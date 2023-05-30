@@ -1,0 +1,62 @@
+Turbo Assembler	 Version 3.0	    04/10/22 23:32:36	    Page 1
+lab9fdd.asm
+
+
+
+      1	0000			     DATA SEGMENT PARA PUBLIC 'DATA'
+      2	0000  ????		     SUMSIR DW ?
+      3	0002			     DATA ENDS
+      4
+      5
+      6	0000			     COD2 SEGMENT PARA 'CODE'
+      7				     PUBLIC SUM
+      8				     ASSUME CS:COD2
+      9
+     10	0000			     SUM PROC FAR
+     11	0000  B8 0000s		     MOV AX, DATA;SUM PROCEDURE, DATA INITIALIZATION
+     12	0003  8E C0		     MOV ES, AX
+     13				     ASSUME ES:DATA
+     14
+     15	0005  26: C7 06	0000r 0000   MOV SUMSIR, 0
+     16	000C  8E DA		     MOV DS, DX
+     17	000E  33 C0		     XOR AX, AX
+     18	0010  33 F6		     XOR SI, SI
+     19
+     20	0012			     l1:
+     21	0012  8A 00		     MOV AL, DS:BX[SI];CALCULATING THE VALUE OF	EACH DIGIT OF THE STRING
+     22	0014  2C 30		     SUB AL, '0';AND ADDING THEM TO RESULT (FROM ASCII TO INT THEN ADD TO SUMSIR)
+     23	0016  26: 01 06	0000r	     ADD SUMSIR, AX
+     24	001B  46		     INC SI
+     25	001C  E2 F4		     LOOP l1
+     26
+     27	001E  26: A1 0000r	     MOV AX, SUMSIR
+     28	0022  CB		     RETF
+     29
+     30	0023			     SUM ENDP
+     31	0023			     COD2 ENDS
+     32				     END
+Turbo Assembler	 Version 3.0	    04/10/22 23:32:36	    Page 2
+Symbol Table
+
+
+
+
+Symbol Name			  Type	 Value
+
+??DATE				  Text	 "04/10/22"
+??FILENAME			  Text	 "lab9fdd "
+??TIME				  Text	 "23:32:36"
+??VERSION			  Number 0300
+@CPU				  Text	 0101H
+@CURSEG				  Text	 COD2
+@FILENAME			  Text	 LAB9FDD
+@WORDSIZE			  Text	 2
+L1				  Near	 COD2:0012
+SUM				  Far	 COD2:0000
+SUMSIR				  Word	 DATA:0000
+
+Groups & Segments		  Bit Size Align  Combine Class
+
+COD2				  16  0023 Para	  none	  CODE
+DATA				  16  0002 Para	  Public  DATA
+

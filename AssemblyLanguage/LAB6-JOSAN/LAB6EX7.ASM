@@ -1,0 +1,60 @@
+DATA SEGMENT PARA PUBLIC 'DATA'
+	
+STR1 DW 11 DUP(?)
+DATA ENDS
+
+CODE SEGMENT PARA PUBLIC 'CODE'
+ASSUME CS:CODE,DS:DATA
+
+
+START PROC FAR
+PUSH DS
+MOV AX,DATA
+MOV DS,AX
+
+MOV AX,0
+MOV SI,0
+MOV CX,10
+first_loop:
+
+PUSH AX
+INC AX
+
+loop first_loop
+
+MOV CX,10
+second_loop:
+
+POP AX
+MOV STR1[SI],AX
+INC SI
+
+loop second_loop
+
+MOV SI,0
+MOV CX,20
+se_loop:
+
+MOV AX,STR1[SI]
+PUSH AX
+INC SI
+CMP SI,9
+JMP  tr_loop 
+
+loop se_loop
+
+
+MOV SI,0
+tr_loop:
+MOV AX,STR1[SI]
+PUSH AX
+INC SI
+loop tr_loop
+
+
+POP DS
+RET
+
+START ENDP
+CODE ENDS
+END START

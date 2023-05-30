@@ -1,0 +1,108 @@
+Turbo Assembler	 Version 3.0	    03/30/22 16:48:59	    Page 1
+lab7ex2.asm
+
+
+
+      1	0000			     DATA SEGMENT PARA PUBLIC 'DATA'
+      2
+      3	0000  61 6E 61 20 61 72	65+  SIR DB "ana are 8354128 *^$*(^(& MeRe R005ii";stringul initial
+      4	      20 38 33 35 34 31	32+
+      5	      38 20 2A 5E 24 2A	28+
+      6	      5E 28 26 20 4D 65	52+
+      7	      65 20 52 30 30 35	69+
+      8	      69
+      9	      =0024		     LEN1 EQU $-SIR;lungimea sirului
+     10
+     11	0024			     DATA ENDS
+     12
+     13	0000			     CODE SEGMENT PARA PUBLIC 'CODE'
+     14
+     15				     ASSUME CS:CODE, DS:DATA
+     16
+     17	0000			     MAIN PROC FAR
+     18				     ;PUSH DS
+     19
+     20	0000  B8 0000s		     MOV AX,DATA
+     21	0003  8E D8		     MOV DS,AX
+     22	0005  33 C0		     XOR AX,AX
+     23	0007  B9 0024		     MOV CX, LEN1;initializam countul loopurilor cu lungimea sirului
+     24
+     25	000A  33 F6		     XOR SI,SI
+     26
+     27
+     28	000C			     L1:
+     29
+     30	000C  80 BC 0000r 61	     CMP SIR[SI],97;comparam cu	litera a mic
+     31	0011  7D 08		     JGE L2;daca e mai mare trecem l2
+     32	0013  46		     INC SI
+     33	0014  83 F9 00		     CMP CX,0;am ajuns la final-iesim
+     34	0017  74 19		     JE	OUT_LAB
+     35
+     36	0019  E2 F1		     LOOP L1
+     37
+     38	001B			     L2:
+     39	001B  8A 84 0000r	     MOV AL,SIR[SI];incarcam pentru comparare
+     40	001F  B3 7B		     MOV BL,123
+     41
+     42	0021  3A C3		     CMP AL,BL ;daca e mai mic decat litera z mic face o scadere de 32
+     43				     ;pentru a ajunge la o litera mare
+     44
+     45	0023  7E 03		     JLE  LESS
+     46
+     47	0025  EB 06 90		     JMP NEXT
+     48
+     49	0028			     LESS:
+     50
+     51	0028  80 AC 0000r 20	     SUB SIR[SI],32 ;scaderea ptn litera mare
+     52
+     53	002D			     NEXT:
+     54
+     55	002D  46		     INC SI
+     56	002E  EB DC		     JMP L1
+     57
+Turbo Assembler	 Version 3.0	    03/30/22 16:48:59	    Page 2
+lab7ex2.asm
+
+
+
+     58	0030  E2 E9		     LOOP L2
+     59
+     60	0032			     OUT_LAB:;iesire
+     61				     ;POP DS
+     62
+     63	0032  CB		     RET
+     64
+     65
+     66	0033			     MAIN ENDP
+     67	0033			     CODE ENDS
+     68				     END MAIN
+Turbo Assembler	 Version 3.0	    03/30/22 16:48:59	    Page 3
+Symbol Table
+
+
+
+
+Symbol Name			  Type	 Value
+
+??DATE				  Text	 "03/30/22"
+??FILENAME			  Text	 "lab7ex2 "
+??TIME				  Text	 "16:48:59"
+??VERSION			  Number 0300
+@CPU				  Text	 0101H
+@CURSEG				  Text	 CODE
+@FILENAME			  Text	 LAB7EX2
+@WORDSIZE			  Text	 2
+L1				  Near	 CODE:000C
+L2				  Near	 CODE:001B
+LEN1				  Number 0024
+LESS				  Near	 CODE:0028
+MAIN				  Far	 CODE:0000
+NEXT				  Near	 CODE:002D
+OUT_LAB				  Near	 CODE:0032
+SIR				  Byte	 DATA:0000
+
+Groups & Segments		  Bit Size Align  Combine Class
+
+CODE				  16  0033 Para	  Public  CODE
+DATA				  16  0024 Para	  Public  DATA
+
